@@ -14,16 +14,6 @@ public class Admin {
     private String login;
     @Column
     private String password;
-    @OneToOne(mappedBy = "info")
-    User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public int getAdminId() {
         return adminId;

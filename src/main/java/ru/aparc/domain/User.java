@@ -15,8 +15,21 @@ public class User {
     @Column
     private String password;
 
-    @OneToOne(targetEntity = UserInfo.class)
-    UserInfo info;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_info_id")
+    private UserInfo info;
+
+    @ManyToOne(targetEntity = Post.class)
+    @JoinColumn(name = "post_id")
+    private Post post;
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
 
     public UserInfo getInfo() {
         return info;

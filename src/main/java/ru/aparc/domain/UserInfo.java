@@ -15,6 +15,17 @@ public class UserInfo {
     @Column
     private String email;
 
+    @OneToOne(mappedBy = "info")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public int getUserInfoId() {
         return userInfoId;
     }
@@ -45,6 +56,7 @@ public class UserInfo {
                 "userInfoId=" + userInfoId +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", user=" + user +
                 '}';
     }
 }
