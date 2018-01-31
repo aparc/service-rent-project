@@ -17,15 +17,16 @@ public class Post {
     @Column
     private Date date;
 
-    @OneToMany(mappedBy = "post")
-    private List<User> userList;
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public List<User> getUserList() {
-        return userList;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getPostId() {

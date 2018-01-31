@@ -1,6 +1,7 @@
 package ru.aparc.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,16 +20,15 @@ public class User {
     @JoinColumn(name = "user_info_id")
     private UserInfo info;
 
-    @ManyToOne(targetEntity = Post.class)
-    @JoinColumn(name = "post_id")
-    private Post post;
+    @OneToMany(mappedBy = "user")
+    private List<Post> postList;
 
-    public Post getPost() {
-        return post;
+    public List<Post> getPostList() {
+        return postList;
     }
 
-    public void setPost(Post post) {
-        this.post = post;
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
     }
 
     public UserInfo getInfo() {
