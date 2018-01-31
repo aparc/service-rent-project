@@ -11,9 +11,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int userId;
-    @Column
+    @Column(unique = true, nullable = false)
     private String login;
-    @Column
+    @Column(nullable = false)
     private String password;
 
     @OneToOne(fetch = FetchType.LAZY)
