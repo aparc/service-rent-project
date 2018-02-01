@@ -27,7 +27,7 @@ public class PostFacadeDaoTest {
     }
 
     @Test
-    public void createUser() {
+    public void testCreateUser() {
         em.getTransaction().begin();
         User user = new User();
         user.setLogin("root");
@@ -41,19 +41,36 @@ public class PostFacadeDaoTest {
     }
 
     @Test
-    public void findUserById() {
-        em.getTransaction().begin();
+    public void testFindUserById() {
         User user = new User();
-        user.setLogin("root");
+        user.setLogin("admin");
         user.setPassword("qwerty");
 
-        User userFind = dao.findUserById(1);
+        em.getTransaction().begin();
+        em.persist(user);
+        em.getTransaction().commit();
 
-        assertEquals("root", user.getLogin());
-        assertEquals("qwerty", user.getPassword());
+        User userFind = dao.findUserByLogin("admin");
+
+
+        assertEquals("admin", userFind.getLogin());
+        assertEquals("qwerty", userFind.getPassword());
     }
 
     @Test
-    public void postInTransaction() {
+    public void testPostInTransaction() {
+        User obj = new User();
+        obj.setLogin("test");
+        obj.setPassword("qwerty");
+        em.getTransaction().begin();
+        em.persist(obj);
+        em.getTransaction().commit();
+
+        dao.postInTransaction(obj.getLogin(), "some test text");
+        User obj2 = dao.findUserByLogin("test");
+
+        assertEquals("test", obj2.getLogin());
+        assertEquals("qwerty", obj2.getPassword());
+        assertTrue(obj2.getPostList().size() == 1);
     }
 }

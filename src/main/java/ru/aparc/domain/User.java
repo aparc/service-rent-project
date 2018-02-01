@@ -4,16 +4,16 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int userId;
-    @Column(unique = true, nullable = false)
+    @Column(name = "login", unique = true, nullable = false)
     private String login;
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @OneToOne(fetch = FetchType.LAZY)

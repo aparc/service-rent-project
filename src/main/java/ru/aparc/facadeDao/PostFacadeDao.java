@@ -23,19 +23,21 @@ public class PostFacadeDao {
         return user;
     }
 
-    public User findUserById(int id){
+    public User findUserByLogin(String login){
         try {
-            User user = em.find(User.class, id);
+            User user = (User) em.createQuery("from User where login =:login")
+                    .setParameter("login", login)
+                    .getSingleResult();
         return user;
         } catch (NoResultException e) {
             return null;
         }
     }
 
-    public void postInTransaction(int id, String text) {
+    public void postInTransaction(String login, String text) {
         em.getTransaction().begin();
         try {
-            User user = findUserById(id);
+            User user = findUserByLogin(login);
             if (user == null) throw new IllegalStateException("No root user");
 
             Post post = new Post();
