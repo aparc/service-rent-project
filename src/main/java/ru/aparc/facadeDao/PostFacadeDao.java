@@ -1,5 +1,6 @@
 package ru.aparc.facadeDao;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.aparc.domain.Post;
 import ru.aparc.domain.User;
 
@@ -8,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public class PostFacadeDao {
+
 
     final EntityManager em;
 
