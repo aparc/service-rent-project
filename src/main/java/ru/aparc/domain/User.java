@@ -69,6 +69,7 @@ public class User {
                 "userId=" + userId +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", info=" + info +
                 '}';
     }
 }
