@@ -56,7 +56,6 @@ public class UserInfo {
                 "userInfoId=" + userInfoId +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", user=" + user +
                 '}';
     }
 }

@@ -5,6 +5,7 @@ import ru.aparc.domain.User;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 public class PostFacadeDao {
 
@@ -28,10 +29,18 @@ public class PostFacadeDao {
             User user = (User) em.createQuery("from User where login =:login")
                     .setParameter("login", login)
                     .getSingleResult();
-        return user;
+            return user;
         } catch (NoResultException e) {
             return null;
         }
+    }
+
+    public List<Post> getUserPosts(String login) {
+        return findUserByLogin(login).getPostList();
+    }
+
+    public List<Post> getAllPosts() {
+        return em.createQuery("from Post").getResultList();
     }
 
     public void postInTransaction(String login, String text) {
