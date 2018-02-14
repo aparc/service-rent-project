@@ -18,11 +18,21 @@ public class UserFacadeDao {
         return user;
     }
 
+    public User updateUser(User user) {
+        return em.merge(user);
+    }
+
     public User findUserByLogin(String login) {
         em.getTransaction().begin();
         User user = (User) em.createQuery("from User where login =:login")
                 .setParameter("login", login).getSingleResult();
         em.getTransaction().commit();
         return user;
+    }
+
+    public void removeUser(User user) {
+        UserInfo info = findUserByLogin(user.getLogin()).getInfo();
+        em.remove(info);
+        em.remove(user);
     }
 }
