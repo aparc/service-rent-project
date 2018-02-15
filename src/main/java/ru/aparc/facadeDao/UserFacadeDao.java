@@ -1,14 +1,18 @@
 package ru.aparc.facadeDao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.aparc.domain.User;
 import ru.aparc.domain.UserInfo;
 
 import javax.persistence.EntityManager;
 
+@Service
 public class UserFacadeDao {
 
     private final EntityManager em;
 
+    @Autowired
     public UserFacadeDao(EntityManager em) {
         this.em = em;
     }
@@ -32,7 +36,9 @@ public class UserFacadeDao {
 
     public void removeUser(User user) {
         UserInfo info = findUserByLogin(user.getLogin()).getInfo();
+        em.getTransaction().begin();
         em.remove(info);
         em.remove(user);
+        em.getTransaction().commit();
     }
 }

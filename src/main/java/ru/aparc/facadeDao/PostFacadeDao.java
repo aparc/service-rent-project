@@ -1,6 +1,7 @@
 package ru.aparc.facadeDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.aparc.domain.Post;
 import ru.aparc.domain.User;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Service
 public class PostFacadeDao {
 
 
