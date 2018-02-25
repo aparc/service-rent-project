@@ -22,4 +22,9 @@ public class PostController {
         model.addAttribute("listPosts", dao.getAllPosts());
         return "posts";
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/")
+    public String searchForm(){
+        return "search";
+    }
 }

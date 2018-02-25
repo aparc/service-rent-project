@@ -3,7 +3,7 @@ package ru.aparc.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "userInfo")
+@Table(name = "USER_INFO")
 public class UserInfo {
 
     @Id

@@ -24,7 +24,7 @@ public class RegistrationUserController {
     public String userForm(Model model) {
         model.addAttribute("userForm", new User());
         model.addAttribute("userInfoForm", new UserInfo());
-        return "user-form";
+        return "index";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/addUser")

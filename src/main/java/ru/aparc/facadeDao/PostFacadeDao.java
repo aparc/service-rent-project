@@ -12,21 +12,21 @@ import java.util.List;
 @Service
 public class PostFacadeDao {
 
+    private final EntityManager em;
 
-    final EntityManager em;
-
+    @Autowired
     public PostFacadeDao(EntityManager em) {
         this.em = em;
     }
 
-    public User createUser() throws EntityExistsException{
-        User user = new User();
-        user.setLogin("admin");
-        user.setPassword("root");
-
-        em.persist(user);
-        return user;
-    }
+//    public User createUser() throws EntityExistsException{
+//        User user = new User();
+//        user.setLogin("admin");
+//        user.setPassword("root");
+//
+//        em.persist(user);
+//        return user;
+//    }
 
     public User findUserByLogin(String login){
         try {
@@ -47,16 +47,14 @@ public class PostFacadeDao {
         return em.createQuery("from Post").getResultList();
     }
 
-    public void postInTransaction(String login, String text) {
+    public void postInTransaction(String login, Post post) {
         em.getTransaction().begin();
         try {
             User user = findUserByLogin(login);
             if (user == null) throw new IllegalStateException("No root user");
 
-            Post post = new Post();
-            post.setDate(new Date());
-            post.setText(text);
             post.setUser(user);
+//            user.setPostList(post);
 
             em.persist(post);
             em.refresh(user);

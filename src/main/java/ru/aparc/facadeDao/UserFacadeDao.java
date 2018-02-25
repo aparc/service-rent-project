@@ -18,7 +18,9 @@ public class UserFacadeDao {
     }
 
     public User createUser(User user){
+        em.getTransaction().begin();
         em.persist(user);
+        em.getTransaction().commit();
         return user;
     }
 

@@ -22,7 +22,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter{
     @Bean
     public EntityManagerFactory getFactory() {
        return Persistence.
-                createEntityManagerFactory("TestPersistenceUnit");
+                createEntityManagerFactory("SQLPersistenceUnit");
     }
 
     @Bean
