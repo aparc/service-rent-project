@@ -1,0 +1,13 @@
+body {
+    background-color: whitesmoke;
+}
+.radius {
+    border-style: groove;
+    border-radius: 8px;
+    margin: 10px;
+    width: 250px;
+    height: 80px;
+    position: absolute;
+    left: 600px;
+    top: 400px;
+}

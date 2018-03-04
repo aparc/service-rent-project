@@ -9,28 +9,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<head>
+    <title>Test</title>
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+</head>
+<body>
 <form:form action="/postLists" method="GET">
-    <div>
-        <label>
-            Type
-            <input type="text" name="type">
-        </label>
-    </div>
+    <div class="radius">
+        <div>
+            <label>
+                Type
+                <input type="text" name="type">
+            </label>
+        </div>
 
-    <div>
-        <label>
-            Price
-            <input type="password" name="price">
-        </label>
-    </div>
+        <div>
+            <label>
+                Price
+                <input type="text" name="price">
+            </label>
+        </div>
 
-
-
-    <div>
-        <input type="submit" value="Search">
+        <div>
+            <input type="submit" value="Search">
+        </div>
     </div>
 </form:form>
-<body>
+
 
 </body>
 </html>

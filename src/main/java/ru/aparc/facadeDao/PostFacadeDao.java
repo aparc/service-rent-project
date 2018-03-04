@@ -19,15 +19,6 @@ public class PostFacadeDao {
         this.em = em;
     }
 
-//    public User createUser() throws EntityExistsException{
-//        User user = new User();
-//        user.setLogin("admin");
-//        user.setPassword("root");
-//
-//        em.persist(user);
-//        return user;
-//    }
-
     public User findUserByLogin(String login){
         try {
             User user = (User) em.createQuery("from User where login =:login")
@@ -45,6 +36,10 @@ public class PostFacadeDao {
 
     public List<Post> getAllPosts() {
         return em.createQuery("from Post").getResultList();
+    }
+
+    public List<Post> getPostsByQuery(String query) {
+        return em.createQuery(query).getResultList();
     }
 
     public void postInTransaction(String login, Post post) {
