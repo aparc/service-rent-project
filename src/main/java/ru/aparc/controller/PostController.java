@@ -18,20 +18,8 @@ public class PostController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/postLists")
-    public String getPostList(@RequestParam(name = "type") String type, @RequestParam(name = "price") String price, Model model) {
-        String query = "from Post";
-        if (type.length() != 0 && price.length() != 0) {
-            query = query.concat(" where type = \'" + type + "\' and price <= \'" + price + "\'");
-            model.addAttribute("listPosts", dao.getPostsByQuery(query));
-        } else if (type.length() != 0 && price.length() == 0) {
-            query = query.concat(" where type = \'" + type + "\'");
-            model.addAttribute("listPosts", dao.getPostsByQuery(query));
-        } else if (type.length() == 0 && price.length() != 0) {
-            query = query.concat(" where price <= \'" + price + "\'");
-            model.addAttribute("listPosts", dao.getPostsByQuery(query));
-        } else {
-            model.addAttribute("listPosts", dao.getAllPosts());
-        }
+    public String getPostList(@RequestParam(name = "location") String location, @RequestParam(name = "price") Double price, Model model) {
+        model.addAttribute("listPosts", dao.getPostsByQuery(location, price));
         return "posts";
     }
 

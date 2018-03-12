@@ -47,12 +47,15 @@ public class PostFacadeDao {
         Root<Post> post = postCriteriaQuery.from(Post.class);
         Path<Double> path = post.<Double> get("price");
         postCriteriaQuery.select(post);
-        postCriteriaQuery.where(cb.and(cb.equal(post.get("location"), location),
-                cb.lessThanOrEqualTo(path, price)));
+        if (location.length() != 0 && price != 0) {
+            postCriteriaQuery.where(cb.and(cb.equal(post.get("location"), location),
+                    cb.lessThanOrEqualTo(path, price)));
+        } else if (location.length() != 0 && price == 0) {
+            postCriteriaQuery.where(cb.equal(post.get("location"), location));
+        } else if (location.length() == 0 && price != 0) {
+            postCriteriaQuery.where(cb.lessThanOrEqualTo(path, price));
+        }
         return em.createQuery(postCriteriaQuery).getResultList();
-
-
-//        return em.createQuery(query).getResultList();
     }
 
     public void postInTransaction(String login, Post post) {
