@@ -18,8 +18,8 @@
     <div class="radius">
         <div>
             <label>
-                Type
-                <input type="text" name="type">
+                Location
+                <input type="text" name="location">
             </label>
         </div>
 

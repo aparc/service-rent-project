@@ -8,6 +8,7 @@ import ru.aparc.domain.User;
 
 import javax.persistence.*;
 import javax.persistence.criteria.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -50,12 +51,12 @@ public class PostFacadeDao {
         Root<Post> post = postCriteriaQuery.from(Post.class);
         Path<Double> path = post.<Double> get("price");
         postCriteriaQuery.select(post);
-        if (location.length() != 0 && price != 0) {
+        if (location.length() != 0 && price != null) {
             postCriteriaQuery.where(cb.and(cb.equal(post.get("location"), location),
                     cb.lessThanOrEqualTo(path, price)));
-        } else if (location.length() != 0 && price == 0) {
+        } else if (location.length() != 0 && price == null) {
             postCriteriaQuery.where(cb.equal(post.get("location"), location));
-        } else if (location.length() == 0 && price != 0) {
+        } else if (location.length() == 0 && price != null) {
             postCriteriaQuery.where(cb.lessThanOrEqualTo(path, price));
         }
         return em.createQuery(postCriteriaQuery).getResultList();
